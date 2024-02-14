@@ -31,21 +31,34 @@ body {
     height: 7rem; 
     width: 100%; }
 
-.hero {
-    display:flex;
+.hero-container {
+    position: relative;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 100%;
-    height: 10vh;
+    width: 100vw;
+    aspect-ratio: 16/9;
+    min-height: 40vh;
+    max-height: 90vh;
+    padding: 5rem 5rem 5rem 5rem;
     background-size: cover;
     background-position: center;
-    min-height: 480px;
-    max-height: 720px;
-    padding: 5rem 5rem 5rem 5rem;
     background-color: #000000;
     color: #FFFFFF; }
+
+.hero-headlines {
+    position: relative;
+    z-index: 10; }
+
+.hero-bg-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(70%); }
 
 .titlecard {
     display:flex;
@@ -54,7 +67,6 @@ body {
     justify-content: center;
     text-align: center;
     width: 100%;
-    height: 10vh;
     background-size: cover;
     background-position: center;
     min-height: 480px;
@@ -67,47 +79,51 @@ body {
     letter-spacing: 5px; }
 
 .divider {
-    height: 2rem;
+    display: block;
+    height: 3rem;
     background-color: #000000; }
 
 .paragraph {
     background-color: #131313;
     color: #FFFFFF;
-    padding: 3rem 3rem 3rem 3rem; 
+    padding: 3rem 1rem 3rem 1rem; 
     text-align: center; }
 
+.paragraph p{
+    max-width: 1280px;
+    color: #AAAAAA; }
+
 .paragraph-wide {
+    display: block;
+    flex-direction: column;
     background-color: #131313;
     color: #FFFFFF;
     padding: 3rem 3rem 3rem 3rem; 
     text-align: center; }
 
-.paragraph p{
-    color: #AAAAAA; }
-
 .paragraph-wide p{
+    max-width: 1280px;
     color: #AAAAAA; }
 
-.insert-container {
+.article-container {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 100%;
-    height: 100%;
     background-color: #000000; }
 
-.insert-accent-column {
+.article-highlighter {
     flex: 100%; 
     width: 100%;
     height: 100%; }
 
-.insert-paragraph-column {
+.article-paragraph {
     flex: 100%; 
     width: 100%;
     height: 100%; }
 
-.insert-accent-photostrip {
+.photostrip {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -116,35 +132,35 @@ body {
     min-height: 600px;
     max-height: 960px;
     background-color: #000000;
-    padding: 1rem 1rem 1rem 1rem; }
+    padding: 0rem 1rem 0rem 1rem; }
 
-.insert-accent-photostrip-item {
+.photostrip-item {
     background-size: cover;
     background-position: center; 
     margin: 1rem 0.5rem 1rem 0.5rem; }
 
-.insert-accent-collage {
+.image-collage {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     background-color: #000000;
     height: 100%;
-    min-height: 600px;
+    min-height: 480px;
     max-height: 960px;
-    padding: 1rem 1rem 1rem 1rem; }
+    padding: 0rem 1rem 0rem 1rem; }
 
-.insert-accent-collage-column {
+.image-collage-column {
     align-items: center;
     flex: 33%;
     height: 100%;
     max-height: 100%;
     margin: 0rem 0.5rem 0rem 0.5rem; }
 
-.insert-accent-collage-column img {
+.image-collage-column img {
     margin: 0.5rem 0 0.5rem 0;
     max-width: 100%; }
 
-.insert-accent-photo {
+.photostrip {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -156,9 +172,9 @@ body {
     padding: 1rem 1rem 1rem 1rem; }
 
 p {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-family: 'Noto Sans', sans-serif;
-    font-weight: 300; 
+    font-weight: 400; 
     margin-top: 1rem;
     margin-bottom: 1rem; }
 
@@ -180,6 +196,11 @@ h3 {
 
 h4 {
     font-size: 1.3rem;
+    font-family: 'Roboto Slab', sans-serif;  
+    font-weight: 400; }
+
+h5 {
+    font-size: 1.2rem;
     font-family: 'Roboto Slab', sans-serif;  
     font-weight: 400; }
 
@@ -207,35 +228,39 @@ h4 {
         width: 100%; }
 
     .divider {
+        display: block;
+        width: 100%;
         height: 2rem; }
 
     .paragraph {
         padding: 3rem 5rem 3rem 5rem; }
     
     .paragraph-wide {
+        display: block;
+        width: 100%;
         padding: 3rem 7rem 3rem 7rem; }
     
     .insert-container {
         flex-direction: row; }
     
-    .insert-accent-column {
+    .article-highlighter {
         padding: 0 1rem 0 1rem; 
         flex: 50%; }
     
-    .insert-paragraph-column {
+    .article-paragraph {
         flex: 50%; }
 
-    .insert-accent-photostrip {
+    .photostrip {
         min-height: 480px;
         max-height: 600px;
         flex-direction: row; }
 
-    .insert-accent-collage {
+    .image-collage {
         min-height: 480px;
         max-height: 600px;
         max-height: 100%; }
 
-    .insert-accent-collage-column {
+    .image-collage-column {
         max-height: 100%; }
     
     #reverse-for-desktop {
@@ -245,23 +270,25 @@ h4 {
 
 @media (min-width: 1280px) {
     p {
-        font-size: 1.1rem; 
+        font-size: 1.2rem; 
         margin-top: 1.5rem;
         margin-bottom: 1.5rem; }
 
     h1 {
-        font-size: 3rem; }
+        font-size: 5rem; }
     
     h2 {
-        font-size: 1.7rem; }
+        font-size: 2rem; }
     
     h3 {
-        font-size: 1.5rem; }
+        font-size: 1.7rem; }
     
     h4 {
-        font-size: 1rem; }
+        font-size: 1.5rem; }
 
     .divider {
+        display: block;
+        width: 100%;
         height: 3rem; }
 
     .header {
@@ -273,12 +300,14 @@ h4 {
         padding: 5rem 10rem 5rem 10rem;  }
         
     .paragraph-wide {
+        display: block;
+        width: 100%;
         padding: 5rem 20rem 5rem 20rem;  }
     
-    .insert-accent-column {
+    .article-highlighter {
         padding: 0 3rem 0 3rem; 
         flex: 40%; }
     
-    .insert-paragraph-column {
+    .article-paragraph {
         flex: 60%; } 
 }
